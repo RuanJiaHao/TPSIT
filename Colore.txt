@@ -13,29 +13,21 @@ public class ParoleColori extends Application implements EventHandler<ActionEven
     public static String[] colore_parole = {"Nero", "Rosso", "Verde", "Giallo", "Blu", "Viola", "Azzurro", "Bianco"};
     public static String[] colore_ansi = {"\033[0;30m", "\033[0;31m", "\033[0;32m", "\033[0;33m", "\033[0;34m", "\033[0;35m", "\033[0;36m", "\033[0;37m"};
     Button genera;
-    Button pulisci;
+
     public static void Stampa() {
         int num1 = 0;
-        int num2 = 0;
         Random rand = new Random();
+        for (int i = 0; i < colore_parole.length; i++) {
+            num1 = rand.nextInt(colore_parole.length);
+            if (num1 == i) {
+                while (num1 == i) {
+                    num1 = (int) (Math.random() * colore_ansi.length);
 
-        for (int i = 0; i < 10; i++) {
-            num1 = rand.nextInt(8);
-            num2 = rand.nextInt(8);
-            if (num1 == num2) {
-                while (num1 != num2) {
-                    num1 = rand.nextInt(8);
-                    num2 = rand.nextInt(8);
                 }
             }
-            System.out.print(colore_parole[num1] + colore_ansi[num2] + " ");
+            System.out.print(colore_parole[num1] + colore_ansi[i] + " ");
         }
     }//fine Stampa
-
-    public static void clearScreen() {
-        for (int i = 0; i < 50; ++i) 
-            System.out.println();
-    }//fine clearScreen
 
     public static void main(String[] args) {
         launch(args);
@@ -44,16 +36,13 @@ public class ParoleColori extends Application implements EventHandler<ActionEven
     @Override
     public void start(Stage primarystage) throws Exception {
         primarystage.setTitle("Parole & Colori");
-        
+
         genera = new Button("Genera parole di colori casuali");
         genera.setOnAction(this);
-        pulisci = new Button("Pulisci");
-        pulisci.setOnAction(this);
-        
+
         StackPane layout = new StackPane();
         layout.getChildren().add(genera);
-        layout.getChildren().add(pulisci);
-        
+
         Scene scene = new Scene(layout, 300, 300);
         primarystage.setScene(scene);
 
@@ -62,11 +51,8 @@ public class ParoleColori extends Application implements EventHandler<ActionEven
 
     public void handle(ActionEvent event) {
         if (event.getSource() == genera) {
-            Stampa();            
+            Stampa();
         }
-        if(event.getSource() == pulisci){
-            clearScreen();
-        }
-    }
+    }//fine handle
 
 }//fine class
