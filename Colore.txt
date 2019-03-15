@@ -1,65 +1,100 @@
 
 import java.util.Random;
+
 import javafx.application.Application;
+
 import javafx.event.ActionEvent;
+
 import javafx.event.EventHandler;
+
 import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
+
 import javafx.scene.layout.StackPane;
+
 import javafx.stage.Stage;
 
-public class ParoleColori extends Application implements EventHandler<ActionEvent> {
+public class Progetto extends Application implements EventHandler<ActionEvent> {
 
     public static String[] colore_parole = {"Nero", "Rosso", "Verde", "Giallo", "Blu", "Viola", "Azzurro", "Bianco"};
+
     public static String[] colore_ansi = {"\033[0;30m", "\033[0;31m", "\033[0;32m", "\033[0;33m", "\033[0;34m", "\033[0;35m", "\033[0;36m", "\033[0;37m"};
+
     Button genera;
-    Button pulisci;
 
     public static void Stampa() {
+
         int num1 = 0;
+
         int num2 = 0;
+
         Random rand = new Random();
 
         for (int i = 0; i < colore_parole.length; i++) {
+
             num1 = rand.nextInt(colore_parole.length);
+
             num2 = rand.nextInt(colore_ansi.length);
+
             if (num1 == num2) {
-                while (num1 != num2) {
+
+                while (num1 == num2) {
+
                     num1 = rand.nextInt(colore_parole.length);
+
                     num2 = rand.nextInt(colore_ansi.length);
+
                 }
+
             }
-            System.out.print(colore_parole[num1] + colore_ansi[num2] + " ");           
+
+            System.out.print(colore_parole[num1] + colore_ansi[num2] + " ");
+
         }
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("");
+        }
+
     }//fine Stampa
 
     public static void main(String[] args) {
+
         launch(args);
+
     }//fine main
 
     @Override
+
     public void start(Stage primarystage) throws Exception {
+
         primarystage.setTitle("Parole & Colori");
-        
+
         genera = new Button("Genera parole di colori casuali");
+
         genera.setOnAction(this);
-        
+
         StackPane layout = new StackPane();
+
         layout.getChildren().add(genera);
-        
+
         Scene scene = new Scene(layout, 300, 300);
+
         primarystage.setScene(scene);
 
         primarystage.show();
+
     }//fine start
 
     public void handle(ActionEvent event) {
+
         if (event.getSource() == genera) {
-            Stampa();            
+
+            Stampa();
+
         }
+
     }
 
 }//fine class
