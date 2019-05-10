@@ -14,7 +14,7 @@ public class Bioritmi extends JPanel {
 
     public static void main(String[] args) {
 //        Finestra();
-        System.out.println(Giorni(10, 9, 2010, 10, 5, 2019));
+        System.out.println(Giorni(10, 5, 2019, 10, 5, 2019));
     }//fine main
 
     public static void Finestra() {
@@ -63,13 +63,14 @@ public class Bioritmi extends JPanel {
 
         while (anno < anno1) {
             if ((anno % 4) == 0) {
-                sommaGiorni += 366;
+                sommaGiorni += 1;
                 anno += 1;
             } else {
-                sommaGiorni += 365;
                 anno += 1;
-            }
+            }            
         }
+        
+        sommaGiorni += differenzaAnni*365;
 //la somma degli anni
         for (int i = 0; i < mese1; i++) {
             sommaMesi += mesiDaSommare[i];
