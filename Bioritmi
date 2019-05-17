@@ -32,7 +32,6 @@ public class Bioritmi extends JPanel {
         int w = this.getWidth();
         int h = this.getHeight();
         g.drawLine(0, h / 2, w, h / 2);
-        g.drawLine(w / 2, h, w / 2, 0);
         int y;
         int t = Giorni(14, 4, 2010, 10, 5, 2019);
         int xp = 0;
