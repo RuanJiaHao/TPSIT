@@ -13,8 +13,8 @@ public class Bioritmi extends JPanel {
     private static double altezza = 400;
 
     public static void main(String[] args) {
-//        Finestra();
-        System.out.println(Giorni(10, 5, 2019, 10, 5, 2019));
+        Finestra();
+
     }//fine main
 
     public static void Finestra() {
@@ -34,72 +34,67 @@ public class Bioritmi extends JPanel {
         g.drawLine(0, h / 2, w, h / 2);
         g.drawLine(w / 2, h, w / 2, 0);
         int y;
-        int t = Giorni(17, 4, 2003, 10, 5,2019);
-
-        for (int x = 0; x <= w; x++) {
-            y = (int) Fisico(t);
+        int t = Giorni(14, 4, 2010, 10, 5, 2019);
+        int xp = 0;
+        int yp = (int) ((Math.sin(360 * (xp+t) / 23) * h / 4) + h / 2);
+        for (double x = 0; x <= w; x++) {
+            y = (int) (Math.sin(Math.PI * 2 * (x+t) / 23) * h / 4) + h / 2;
             g.setColor(Color.blue);
-            g.drawLine((int) x, y, (int) x, y);
-
-            y = (int) Emotiva(t);
+            int xap = (int) (x * 10);
+            g.drawLine(xp, yp, xap, y);
+            xp = xap;
+            yp = y;
+        }
+        xp = 0;
+        yp = (int) ((Math.sin(360 * (xp+t) / 28) * h / 4) + h / 2);
+        for (double x = 0; x <= w; x++) {
+            y = (int) (Math.sin(Math.PI * 2 * (x+t) / 28) * h / 4) + h / 2;
             g.setColor(Color.red);
-            g.drawLine((int) x, y, (int) x, y);
-
-            y = (int) Intellettuale(t);
+            int xap = (int) (x * 10);
+            g.drawLine(xp, yp, xap, y);
+            xp = xap;
+            yp = y;
+        }
+        xp = 0;
+        yp = (int) ((Math.sin(360 * (xp+t) / 33) * h / 4) + h / 2);
+        for (double x = 0; x <= w; x++) {
+            y = (int) (Math.sin(Math.PI * 2 * (x+t) / 33) * h / 4) + h / 2;
             g.setColor(Color.green);
-            g.drawLine((int) x, y, (int) x, y);
+            int xap = (int) (x * 10);
+            g.drawLine(xp, yp, xap, y);
+            xp = xap;
+            yp = y;
         }
 
     }//fine paintComponent
 
     public static int Giorni(int giorno, int mese, int anno, int giorno1, int mese1, int anno1) {
         int[] mesiDaSommare = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        int[] mesiDaSommareB = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         int sommaGiorni = 0;
-        int sommaMesi = 0;
-        int sommaMesi1 = 0;
-        int differenzaMesi = 0;
-        int differenzaAnni = anno1 - anno;
+        int sommatoria = 0;
+        int sommatoria1 = 0;
+        int x = 365;
 
-        while (anno < anno1) {
+        while (anno < anno1 - 1) {
             if ((anno % 4) == 0) {
-                sommaGiorni += 1;
+                sommaGiorni += 366;
                 anno += 1;
             } else {
+                sommaGiorni += 365;
                 anno += 1;
-            }            
+            }
         }
-        
-        sommaGiorni += differenzaAnni*365;
-//la somma degli anni
-        for (int i = 0; i < mese1; i++) {
-            sommaMesi += mesiDaSommare[i];
+        for (int i = 0; i < mese1 - 1; i++) {
+            sommatoria += mesiDaSommare[i];
         }
-        sommaGiorni += sommaMesi;
         for (int i = 0; i < mese; i++) {
-            sommaMesi += mesiDaSommare[i];
+            sommatoria1 += mesiDaSommare[i];
         }
-        differenzaMesi = 365 - sommaMesi;
-        sommaGiorni += differenzaMesi;
-//la somma dei mesi
 
-        sommaGiorni += mesiDaSommare[mese] - giorno;
-        sommaGiorni += giorno1;
-//la somma dei giorni
-        return sommaGiorni - 246;
+        sommaGiorni += sommatoria + (giorno1 - 1) + (x - sommatoria1 + (mesiDaSommare[mese] - giorno));
 
+        return sommaGiorni;
     }//fine Giorni
 
-    public static double Fisico(int t) {
-        return (int) Math.sin(360 * t / 23);
-    }//fine Fisico
+}//fine class 23/10/1973 16/3/1961
 
-    public static double Emotiva(int t) {
-        return (int) Math.sin(360 * t / 28);
-    }//fine Emotiva
-
-    public static double Intellettuale(int t) {
-        return (int) Math.sin(360 * t / 33);
-    }//fine Intelletuale
-
-}//fine class
