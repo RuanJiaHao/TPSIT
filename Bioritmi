@@ -2,8 +2,6 @@ package bioritmi;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Date;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,7 +12,6 @@ public class Bioritmi extends JPanel {
 
     public static void main(String[] args) {
         Finestra();
-
     }//fine main
 
     public static void Finestra() {
@@ -28,16 +25,24 @@ public class Bioritmi extends JPanel {
     }//fine Finestra
 
     @Override
+
     public void paintComponent(Graphics g) {
         int w = this.getWidth();
         int h = this.getHeight();
         g.drawLine(0, h / 2, w, h / 2);
+        g.setColor(Color.blue);
+        g.drawString("Fisico", 5, h - 40);
+        g.setColor(Color.red);
+        g.drawString("Emotivo", 5, h - 25);
+        g.setColor(Color.green);
+        g.drawString("Intelletivo", 5, h - 10);
+
         int y;
         int t = Giorni(14, 4, 2010, 10, 5, 2019);
         int xp = 0;
-        int yp = (int) ((Math.sin(360 * (xp+t) / 23) * h / 4) + h / 2);
+        int yp = (int) ((Math.sin(360 * (xp + t) / 23) * h / 4) + h / 2);
         for (double x = 0; x <= w; x++) {
-            y = (int) (Math.sin(Math.PI * 2 * (x+t) / 23) * h / 4) + h / 2;
+            y = (int) (Math.sin(Math.PI * 2 * (x + t) / 23) * h / 4) + h / 2;
             g.setColor(Color.blue);
             int xap = (int) (x * 10);
             g.drawLine(xp, yp, xap, y);
@@ -45,9 +50,9 @@ public class Bioritmi extends JPanel {
             yp = y;
         }
         xp = 0;
-        yp = (int) ((Math.sin(360 * (xp+t) / 28) * h / 4) + h / 2);
+        yp = (int) ((Math.sin(360 * (xp + t) / 28) * h / 4) + h / 2);
         for (double x = 0; x <= w; x++) {
-            y = (int) (Math.sin(Math.PI * 2 * (x+t) / 28) * h / 4) + h / 2;
+            y = (int) (Math.sin(Math.PI * 2 * (x + t) / 28) * h / 4) + h / 2;
             g.setColor(Color.red);
             int xap = (int) (x * 10);
             g.drawLine(xp, yp, xap, y);
@@ -55,9 +60,9 @@ public class Bioritmi extends JPanel {
             yp = y;
         }
         xp = 0;
-        yp = (int) ((Math.sin(360 * (xp+t) / 33) * h / 4) + h / 2);
+        yp = (int) ((Math.sin(360 * (xp + t) / 33) * h / 4) + h / 2);
         for (double x = 0; x <= w; x++) {
-            y = (int) (Math.sin(Math.PI * 2 * (x+t) / 33) * h / 4) + h / 2;
+            y = (int) (Math.sin(Math.PI * 2 * (x + t) / 33) * h / 4) + h / 2;
             g.setColor(Color.green);
             int xap = (int) (x * 10);
             g.drawLine(xp, yp, xap, y);
@@ -95,5 +100,4 @@ public class Bioritmi extends JPanel {
         return sommaGiorni;
     }//fine Giorni
 
-}//fine class 23/10/1973 16/3/1961
-
+}//fine class
