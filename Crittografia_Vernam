@@ -1,0 +1,50 @@
+package crittografia_vernam;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class Crittografia_Vernam {
+
+	public static String[] arr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+	public static void main(String[] args) {
+		String mex = "CIAO";
+		
+		String key = generateKey(mex);
+		//System.out.println(encode(mex, key));
+		System.out.println(decode(encode(mex, key)));
+	}//end main
+
+	public static String encode(String mex, String key) {
+		String ris = "";
+		key = "AJRX";
+		String[] mexsplit = mex.split("");
+		String[] keysplit = key.split("");
+		int sum;
+		char c;
+		for (int i = 0; i < mexsplit.length; i++) {
+			sum = (mexsplit[i].charAt(0) - 65) + (keysplit[i].charAt(0) - 65);
+			System.out.println(sum);
+			ris += arr[sum % 26];
+		}
+		return ris + key;
+	}
+
+	public static String decode(String mex) {
+		String ris = "";
+		String[] mexsplit = mex.substring(0, mex.length()/2).split("");
+		String[] keysplit = mex.substring(mex.length()/2, mex.length()).split("");
+		System.out.println(Arrays.toString(mexsplit));
+		System.out.println(Arrays.toString(keysplit));
+		return ris;
+	}//end decode
+
+	public static String generateKey(String str) {
+		Random rand = new Random();
+		String key = "";
+		for (int i = 0; i < str.length(); i++) {
+			key += arr[rand.nextInt(26)];
+		}
+		return key;
+	}
+}//end class
